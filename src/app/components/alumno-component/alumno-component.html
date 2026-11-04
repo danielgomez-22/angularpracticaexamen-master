@@ -1,0 +1,24 @@
+<div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg border border-gray-100">
+  <h1 class="text-3xl font-extrabold text-gray-800 mb-6 text-center border-b pb-4">Alumno</h1>
+
+  @if(alumno){
+    <div class="flex flex-col items-center gap-4">
+      <img src={{alumno.imagen}} class="w-[150px] h-[150px] object-cover rounded-full shadow-md border-4 border-blue-50" alt="Foto del alumno"/>
+      
+      <div class="w-full bg-gray-50 rounded-xl p-5 mt-2 space-y-3">
+        <h2 class="text-lg text-gray-600"><span class="font-bold text-gray-900">Nombre:</span> {{alumno.nombre}}</h2>
+        <h2 class="text-lg text-gray-600"><span class="font-bold text-gray-900">Apellidos:</span> {{alumno.apellidos}}</h2>
+        <h2 class="text-lg text-gray-600"><span class="font-bold text-gray-900">Activo:</span> {{alumno.activo}}</h2>
+      </div>
+    </div>
+    
+    <!-- Botón de volver estilizado -->
+    <a [routerLink]="['/']" class="block w-full mt-6 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-center rounded-xl transition-colors duration-200 shadow-sm">
+      Volver
+    </a>
+  }@else {
+    <div class="flex justify-center items-center py-12">
+      <p class="text-gray-400 font-medium text-lg animate-pulse">Cargando....</p>
+    </div>
+  }
+</div>

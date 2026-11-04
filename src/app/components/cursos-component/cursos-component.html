@@ -1,0 +1,32 @@
+<div class="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg border border-gray-100">
+  @if (cursos) {
+    <h1 class="text-3xl font-extrabold text-gray-800 mb-6 text-center border-b pb-4">Lista de cursos</h1>
+    
+    <div class="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+      <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+        <thead class="bg-gray-50 text-gray-700 uppercase text-xs tracking-wider">
+          <tr>
+            <th scope="col" class="py-3 px-6">ID Curso</th>
+            <th scope="col" class="py-3 px-6">Acción</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          @for (curso of cursos; track curso) {
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="py-4 px-6 font-medium text-gray-900">{{curso}}</td>
+              <td class="py-4 px-6">
+                <a [routerLink]="['/alumnosCurso', curso]" class="inline-flex items-center px-3.5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs rounded-lg transition-colors shadow-sm">
+                  Ver Alumnos
+                </a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  } @else {
+    <div class="flex justify-center items-center py-12">
+      <p class="text-gray-400 font-medium text-lg animate-pulse">CARGANDO...</p>
+    </div>
+  }
+</div>

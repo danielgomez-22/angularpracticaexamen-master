@@ -1,0 +1,99 @@
+@if (alumnos) {
+  <div class="min-h-[80vh] bg-gray-100 px-4 py-10">
+    <div class="max-w-7xl mx-auto">
+      <!-- Cabecera -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-800">Gestión de alumnos</h1>
+
+        <p class="text-gray-500 mt-2">Consulta y visualiza todos los alumnos registrados.</p>
+      </div>
+
+      <!-- Tabla -->
+      <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+        <!-- Título de tabla -->
+        <div class="px-6 py-5 border-b border-gray-200 flex items-center justify-between">
+          <div>
+            <h2 class="text-xl font-semibold text-gray-800">Listado de alumnos</h2>
+
+            <p class="text-sm text-gray-500 mt-1">Información de los alumnos</p>
+          </div>
+
+          <span class="bg-indigo-100 text-indigo-700 text-sm font-semibold px-4 py-2 rounded-lg">
+            Alumnos
+          </span>
+        </div>
+
+        <!-- Contenedor responsive -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left text-gray-600">
+            <thead class="text-xs text-white uppercase bg-indigo-600">
+              <tr>
+                <th class="px-6 py-4">ID Alumno</th>
+                <th class="px-6 py-4">Nombre</th>
+                <th class="px-6 py-4">Apellidos</th>
+                <th class="px-6 py-4">Imagen</th>
+                <th class="px-6 py-4">Activo</th>
+                <th class="px-6 py-4">ID Curso</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @for (alumno of alumnos; track alumno.idAlumno) {
+                <tr
+                  class="bg-white border-b border-gray-100 hover:bg-indigo-50 transition-colors duration-200"
+                >
+                  <td class="px-6 py-4 font-semibold text-indigo-600">
+                    {{ alumno.idAlumno }}
+                  </td>
+
+                  <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                    {{ alumno.nombre }}
+                  </td>
+
+                  <td class="px-6 py-4 text-gray-700">
+                    {{ alumno.apellidos }}
+                  </td>
+
+                  <td class="px-6 py-4">
+                    <img src={{alumno.imagen}} style="width: 30px; height: 30px;"/>
+                  </td>
+
+                  <td class="px-6 py-4">
+                    <span
+                      [class]="
+                        alumno.activo ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                      "
+                      class="text-xs font-semibold px-3 py-1.5 rounded-full"
+                    >
+                      {{ alumno.activo ? 'Activo' : 'Inactivo' }}
+                    </span>
+                  </td>
+
+                  <td class="px-6 py-4">
+                    <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-lg font-medium">
+                      {{ alumno.idCurso }}
+                    </span>
+                  </td>
+
+                  <td class="px-6 py-4">
+                    <a [routerLink]="['/alumno', alumno.idAlumno]">Ver detalles</a>
+                  </td>
+                  <td class="px-6 py-4">
+                    <a [routerLink]="['/update', alumno.idAlumno]">Modificar</a>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pie de tabla -->
+        <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+          <p class="text-sm text-gray-500">Listado de alumnos de Nexus</p>
+        </div>
+      </div>
+    </div>
+  </div>
+}@else {
+    <p>Cargando....</p>
+}

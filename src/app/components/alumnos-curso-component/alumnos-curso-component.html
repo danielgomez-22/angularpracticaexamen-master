@@ -1,0 +1,48 @@
+<div class="max-w-6xl mx-auto mt-10 p-6 bg-white rounded-2xl shadow-xl border border-gray-100">
+  <h1 class="text-3xl font-extrabold text-gray-800 mb-6 text-center">Alumnos curso</h1>
+
+  @if (alumnos) {
+    <div class="overflow-x-auto rounded-xl border border-gray-200 shadow-sm mb-6">
+      <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+        <thead class="bg-gray-50 text-gray-700 uppercase text-xs tracking-wider border-b border-gray-200">
+          <tr>
+            <th class="px-6 py-4 font-semibold">ID Alumno</th>
+            <th class="px-6 py-4 font-semibold">Nombre</th>
+            <th class="px-6 py-4 font-semibold">Apellidos</th>
+            <th class="px-6 py-4 font-semibold">Imagen</th>
+            <th class="px-6 py-4 font-semibold">Activo</th>
+            <th class="px-6 py-4 font-semibold">ID Curso</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          @for (alumno of alumnos; track alumno.idAlumno) {
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="px-6 py-4 font-medium text-gray-900">{{ alumno.idAlumno }}</td>
+              <td class="px-6 py-4 text-gray-800">{{ alumno.nombre }}</td>
+              <td class="px-6 py-4 text-gray-800">{{ alumno.apellidos }}</td>
+              <td class="px-6 py-4">
+                <img [src]="alumno.imagen" class="w-10 h-10 object-cover rounded-full shadow-sm border border-gray-200" alt="Avatar alumno" />
+              </td>
+              <td class="px-6 py-4">
+                <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-blue-50 text-blue-700">
+                  {{ alumno.activo }}
+                </span>
+              </td>
+              <td class="px-6 py-4 text-gray-600">{{ alumno.idCurso }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <a [routerLink]="['/cursos']" class="inline-flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors shadow-sm text-sm">
+        ← Volver a cursos
+      </a>
+    </div>
+  } @else {
+    <div class="flex justify-center items-center py-12">
+      <p class="text-gray-400 font-medium text-lg animate-pulse">Cargando...</p>
+    </div>
+  }
+</div>
